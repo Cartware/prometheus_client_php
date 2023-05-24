@@ -17,7 +17,7 @@ While the first needs a separate binary running, the second just needs the [APC]
 Add as [Composer](https://getcomposer.org/) dependency:
 
 ```sh
-composer require endclothing/prometheus_client_php
+composer require cartware/prometheus_client_php
 ```
 
 ## Usage
