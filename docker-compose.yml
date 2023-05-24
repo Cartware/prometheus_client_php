@@ -1,37 +1,34 @@
-nginx:
-  build: nginx/
-  links:
-    - php-fpm
-  ports:
-    - 8080:80
+version: "2.4"
 
-php-fpm:
-  build: php-fpm/
-  volumes:
-    - .:/var/www/html
-  links:
-    - redis
-    - pushgateway
-  environment:
-    - REDIS_HOST=redis
+services:
+  nginx:
+    build: nginx/
+    links:
+      - php-fpm
 
-redis:
-  image: redis
-  ports:
-      - 6379:6379
+  php-fpm:
+    build: php-fpm/
+    volumes:
+      - .:/var/www/html
+    links:
+      - redis
+      - pushgateway
+    environment:
+      - REDIS_HOST=redis
 
-pushgateway:
-  image: prom/pushgateway
-  ports:
-    - 9091:9091
+  redis:
+    image: redis
 
-phpunit:
-  build: php-fpm/
-  volumes:
-    - .:/var/www/html
-  links:
-    - redis
-    - pushgateway
-    - nginx
-  environment:
-    - REDIS_HOST=redis
+  pushgateway:
+    image: prom/pushgateway
+
+  phpunit:
+    build: php-fpm/
+    volumes:
+      - .:/var/www/html
+    links:
+      - redis
+      - pushgateway
+      - nginx
+    environment:
+      - REDIS_HOST=redis
