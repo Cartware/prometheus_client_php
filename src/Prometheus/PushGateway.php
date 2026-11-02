@@ -26,7 +26,7 @@ class PushGateway
      * @param string $address host:port of the push gateway
      * @param ClientInterface $client
      */
-    public function __construct($address, ClientInterface $client = null)
+    public function __construct($address, ?ClientInterface $client = null)
     {
         $this->address = $address;
         $this->client = $client ?? new Client();
